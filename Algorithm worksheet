@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Algorithm {
+    public static void main(String[] args) {
+        Integer num[] = {23, 56, -18, 100, 45, -78, 98, 45, 69, -7};
+        List<Integer> data = new ArrayList<>(Arrays.asList(num));
+
+        // Print the original arrays and lists
+        System.out.println("Original array: " + Arrays.toString(num));
+        System.out.println("Original list: " + data);
+
+        // Remove outliers from array and list
+        num = delete_algo1(num);
+        data = delete_algo2(data);
+
+        // Print the results
+        System.out.println("Array after removing outliers: " + Arrays.toString(num));
+        System.out.println("List after removing outliers: " + data);
+    }
+
+    public static Integer[] delete_algo1(Integer num[]) {
+        // Remove negative values from the array
+        return Arrays.stream(num)
+                     .filter(n -> n >= 0)
+                     .toArray(Integer[]::new);
+    }
+
+    public static List<Integer> delete_algo2(List<Integer> data) {
+        // Remove negative values from the list
+        return data.stream()
+                   .filter(n -> n >= 0)
+                   .collect(Collectors.toList());
+    }
+}
